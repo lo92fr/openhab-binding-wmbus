@@ -18,6 +18,7 @@ import org.openhab.binding.wmbus.WMBusBindingConstants;
 import org.openhab.binding.wmbus.device.UnknownMeter.UnknownWMBusDeviceHandler;
 import org.openhab.binding.wmbus.device.generic.DynamicWMBusThingHandler;
 import org.openhab.binding.wmbus.discovery.CompositeMessageListener;
+import org.openhab.binding.wmbus.handler.TCPBusBridgeHandler;
 import org.openhab.binding.wmbus.handler.VirtualWMBusBridgeHandler;
 import org.openhab.binding.wmbus.handler.WMBusBridgeHandler;
 import org.openhab.binding.wmbus.handler.WMBusMessageListener;
@@ -74,6 +75,11 @@ public class WMBusHandlerFactory extends BaseThingHandlerFactory {
             if (thingTypeUID.equals(WMBusBindingConstants.THING_TYPE_BRIDGE)) {
                 logger.debug("Creating handler for WMBus bridge.");
                 WMBusBridgeHandler handler = new WMBusBridgeHandler((Bridge) thing, keyStorage);
+                handler.registerWMBusMessageListener(messageListener);
+                return handler;
+            } else if (thingTypeUID.equals(WMBusBindingConstants.THING_TYPE_TCP_BRIDGE)) {
+                logger.debug("Creating handler for TCP MBus bridge.");
+                TCPBusBridgeHandler handler = new TCPBusBridgeHandler((Bridge) thing, keyStorage);
                 handler.registerWMBusMessageListener(messageListener);
                 return handler;
             } else if (thingTypeUID.equals(WMBusBindingConstants.THING_TYPE_VIRTUAL_BRIDGE)) {

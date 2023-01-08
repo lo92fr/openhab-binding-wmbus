@@ -66,6 +66,29 @@
 		</config-description>
 	</bridge-type>
 
+<bridge-type id="tcpmbusbridge">
+        <label>TCP MBus bridge</label>
+        <description>The TCP MBus bridge represents the USB stick used to receive WMBus messages. There are three different
+            sticks supported: Amber Wireless AMB8465-M, Radiocrafts RC1180-MBUS and IMST iM871A-USB</description>
+
+        <channels>
+            <channel id="last_frame" typeId="last_frame"/>
+        </channels>
+        <config-description>
+            <parameter name="host" type="text">
+                <context>host</context>
+                <label>Host</label>
+                <description>The host of the tcp gateway.</description>
+                <required>true</required>
+            </parameter>
+            <parameter name="port" type="integer">
+                <description>The port of the tcp gateway</description>
+                <label>Port</label>
+                <required>true</required>
+            </parameter>
+        </config-description>
+    </bridge-type>
+
 	<bridge-type id="wmbusvirtualbridge">
 		<label>Virtual WMBus Receiver</label>
 		<description>The WMBus receiver which is not attached to serial port.</description>
